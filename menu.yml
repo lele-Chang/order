@@ -14,7 +14,19 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
   instance:
+    health-check-url-path: /actuator/health
+    metadata-map:
+      startup: ${random.int} 
     prefer-ip-address: true
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.southwind.entity
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  
+  endpoint:
+    health:
+      show-details: ALWAYS
